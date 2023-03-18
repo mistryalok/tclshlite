@@ -4,6 +4,8 @@
 #include <stack>
 #include <string.h>
 #include <vector>
+#include <fstream>
+
 //#define DBGMODE
 #ifdef DBGMODE
 #define DBG(x) cout<<x<<endl;
@@ -55,6 +57,20 @@ string parse_cmd(const string& inp,map<string,string>& vars) {
 	  if (inp.substr(0,4)=="puts") {
 	  		return proc_puts(inp.substr(5,inp.length()),vars);
 	  }
+	cout<<"To source file"<<endl;
+	  //if (inp.substr(0,6)=="source ") {
+			cout<<"Invoking file read"<<endl;
+			fstream src_file;
+			src_file.open(inp.substr(7,inp.length()-7), ios::in); 
+			if(src_file.is_open()) {
+				string cmd;
+				while(getline(src_file,cmd)) {
+					cout<<parse_cmd(cmd,vars)<<endl;
+				}
+				src_file.close();
+			}
+			return "Finished parsing!";
+	  //}
 }
 
 void proc_set(string inp, map<string,string>& vars) {
@@ -83,11 +99,11 @@ void proc_set(string inp, map<string,string>& vars) {
 		split_cmd[1]=parse_cmd(in_d.substr(1,(in_d.length()-2)),vars);
 		vars[split_cmd.at(0)]=split_cmd.at(1);
 	} else if(in_d.substr(0,2)=="${") {
-		cout<<"Its variable recursive"<<endl;
+		DBG("Its variable recursive"<<endl);
 		split_cmd[1]=vars[in_d.substr(2,in_d.length()-3)];
-		cout<<"Here is string :"<<in_d.substr(2,in_d.length()-3)<<endl;
-		cout<<"HEre is split cmd 0 "<<split_cmd.at(0)<<endl;
-		cout<<"HEre is split cmd 1 "<<split_cmd.at(1)<<endl;
+		DBG("Here is string :"<<in_d.substr(2,in_d.length()-3)<<endl);
+		DBG("HEre is split cmd 0 "<<split_cmd.at(0)<<endl);
+		DBG("HEre is split cmd 1 "<<split_cmd.at(1)<<endl);
 		vars[split_cmd.at(0)]=split_cmd.at(1);
 	} else {
 		vars[split_cmd.at(0)]=split_cmd.at(1);
@@ -133,7 +149,7 @@ int main() {
 
 	// so we keep on looping until user says no more please.
 	while(1) {
-	  	cout<<"tclshlite>";
+	  	cout<<"%";
 	  	getline(cin,inp);
 	  	DBG("You have entered :"<<inp<<endl);
 		// We call this nice routine who should 
