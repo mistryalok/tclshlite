@@ -13,17 +13,35 @@ using namespace std;
 #include "proc_set.h"
 #include "proc_puts.h"
 
+/*
+ Commands are supposed to be only within below variations.
+ set <var> <value>
+ set <var> <var>
+ set <var> [<cmd>]
+ puts <var>
+ puts <value>
+ puts [<cmd>]
+*/
+
 string parse_cmd(const string& inp,map<string,string>& vars) {
-	DBG("Parse command called with args "<< inp<<endl);
+	DBG(" Command parsing invoked with cmd :: "<< inp<<endl);
+    /*
+     Checkig if its "set "
+    */
 	  if (inp.substr(0,4)=="set ") {
 	  	proc_set(inp.substr(4,inp.length()),vars);
 		return "";	  	
 	  }
-	  if (inp.substr(0,4)=="puts") {
+      /*
+       Checking if its "puts "
+      */
+	  if (inp.substr(0,5)=="puts ") {
 	  		return proc_puts(inp.substr(5,inp.length()),vars);
 	  }
-	cout<<"To source file"<<endl;
-	  //if (inp.substr(0,6)=="source ") {
+    /*
+        if user wants to parse a tcl file then no worries.
+    */
+	  if (inp.substr(0,7)=="source ") {
 			cout<<"Invoking file read"<<endl;
 			fstream src_file;
 			src_file.open(inp.substr(7,inp.length()-7), ios::in); 
@@ -34,8 +52,8 @@ string parse_cmd(const string& inp,map<string,string>& vars) {
 				}
 				src_file.close();
 			}
-			return "Finished parsing!";
-	  //}
+			return "";
+	   }
 }
 
 #endif //_PARSE_CMD_

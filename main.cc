@@ -50,7 +50,6 @@ int main() {
 	  cout<<"# Author: Alok Mistry          		#"<<endl;
 	  cout<<"# Type ./tclshlite -help for more info.#"<<endl;
 	  cout<<"########################################"<<endl;
-
 	/*
 	so we keep on looping until user says no more please.
 	*/ 
@@ -65,7 +64,5 @@ int main() {
 		*/
 	  	cout<<parse_cmd(inp,vars)<<endl;
 	}	 
-	
-
 }
 
