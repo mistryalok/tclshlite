@@ -9,6 +9,7 @@
 
 */
 /*
+DEBUG MODE:
  We have a debug mode to enable some more
  info about how and where things are stored in
  map and vectors.
@@ -28,6 +29,7 @@
 #include <vector>
 #include <fstream>
 #include "parse_cmd.h"
+#include "help.h"
 
 
 
@@ -57,6 +59,7 @@ int main() {
 	  	cout<<"%";
 	  	getline(cin,inp);
 		if(inp.substr(0,4)=="exit") { break; }
+		if(inp.substr(0,4)=="help") { help(); }
 	  	DBG("You have entered :"<<inp<<endl);
 		/*
 		We call this nice routine who should 

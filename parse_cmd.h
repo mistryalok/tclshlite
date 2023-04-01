@@ -47,6 +47,9 @@ string parse_cmd(const string& inp,map<string,string>& vars) {
 			src_file.open(inp.substr(7,inp.length()-7), ios::in); 
 			if(src_file.is_open()) {
 				string cmd;
+				/*
+				 For each line, parse commands..
+				*/
 				while(getline(src_file,cmd)) {
 					cout<<parse_cmd(cmd,vars)<<endl;
 				}
