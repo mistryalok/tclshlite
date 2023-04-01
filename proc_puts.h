@@ -1,14 +1,8 @@
 #ifndef _PROC_PUTS_
 #define _PROC_PUTS_
 
-#include <stdio.h>
-#include <iostream>
-#include <map>
-#include <stack>
-#include <string.h>
-#include <vector>
-#include <fstream>
-using namespace std;
+#include "common_includes.h"
+
 string proc_puts(string inp, map<string,string>& vars) {
 	DBG("Data is"<<vars[inp.substr(1,inp.length())]<<endl);
 	//cout<<vars[inp.substr(1,inp.length())]<<endl;

@@ -1,16 +1,6 @@
 #ifndef _PROC_SET_
 #define _PROC_SET_
-#include <stdio.h>
-#include <iostream>
-#include <map>
-#include <stack>
-#include <string.h>
-#include <vector>
-#include <fstream>
-
-using namespace std;
-#include "util.h"
-
+#include "common_includes.h"
 string parse_cmd(const string& inp,map<string,string>& vars);
 void proc_set(string inp, map<string,string>& vars) {
 	DBG("Called with inp ="<<inp<<endl);

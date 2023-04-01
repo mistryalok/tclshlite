@@ -21,17 +21,7 @@ DEBUG MODE:
 #define DBG(x) //x
 #endif
 
-#include <stdio.h>
-#include <iostream>
-#include <map>
-#include <stack>
-#include <string.h>
-#include <vector>
-#include <fstream>
-#include "parse_cmd.h"
-#include "help.h"
-
-
+#include "common_includes.h"
 
 using namespace std;
 
@@ -45,6 +35,7 @@ int main() {
 	 variables in memory.
 	*/
 	  map<string,string> vars;
+	  proc_type proc_list;
 	  string inp;
 	  cout<<"########################################"<<endl;
 	  cout<<"# Welcome to tclshlite..               #"<<endl;
@@ -60,6 +51,14 @@ int main() {
 	  	getline(cin,inp);
 		if(inp.substr(0,4)=="exit") { break; }
 		if(inp.substr(0,4)=="help") { help(); }
+
+		/*
+	   if user wants to process a proc/function
+	    */
+	  if (inp.substr(0,4)=="proc") {
+		proc(inp.substr(5,inp.length()),proc_list);
+	  }
+
 	  	DBG("You have entered :"<<inp<<endl);
 		/*
 		We call this nice routine who should 

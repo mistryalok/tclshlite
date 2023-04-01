@@ -1,13 +1,6 @@
 #ifndef _UTIL_H_
 #define _UTIL_H_
-#include <stdio.h>
-#include <iostream>
-#include <map>
-#include <stack>
-#include <string.h>
-#include <vector>
-#include <fstream>
-using namespace std;
+#include "common_includes.h"
 
 /* This guy removes spaces ' ' from string */
 void removeDupWord(string str,vector<string>& vec,int sgmnt)

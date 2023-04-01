@@ -1,17 +1,8 @@
 #ifndef _PARSE_CMD_
 #define _PARSE_CMD_
 
-#include <stdio.h>
-#include <iostream>
-#include <map>
-#include <stack>
-#include <string.h>
-#include <vector>
-#include <fstream>
-using namespace std;
+#include "common_includes.h"
 
-#include "proc_set.h"
-#include "proc_puts.h"
 
 /*
  Commands are supposed to be only within below variations.
@@ -38,6 +29,8 @@ string parse_cmd(const string& inp,map<string,string>& vars) {
 	  if (inp.substr(0,5)=="puts ") {
 	  		return proc_puts(inp.substr(5,inp.length()),vars);
 	  }
+
+	
     /*
         if user wants to parse a tcl file then no worries.
     */
