@@ -30,22 +30,36 @@ void proc(string inp,proc_type& proc_list) {
           map<map<string,string>,vector<string> > proc_body;
           map<string,string> proc_vars; 
           vector<string> proc_code;
-
+          string proc_name;
 
             /*
+              Extract func name <proc proc_name >
               Store function name on second word 
               
+             proc_name = substr(x,y);
             */
 
 
             /*
              Traverse through each variable and store in map<string,string>
-                proc_var
+             Map null value, since we don't have any idea during initial phase of values
+
+
+                for(each spaced variable) starting from "{" till "}"
+                proc_var[variable] = "NULL"
             */
 
             /*
-             store the code in vector 
-                proc_code
+             store the code in vector until you see "}"
+             basically once <proc abc {a b c} {> command
+             starts, we keep on waiting for user to enter
+             the new commands.. until he enters "}" which will
+             showcase end of proc.
+
+                
+                while(new_string!="}") {
+                proc_code.push_back(new_string)
+                }
             */
 
             /*
@@ -53,10 +67,6 @@ void proc(string inp,proc_type& proc_list) {
             */
            proc_body[proc_vars]=proc_code;
            proc_list[inp.substr(0,4)]=proc_body;
-
-
-
-
 
 /*
  For debug mostly
