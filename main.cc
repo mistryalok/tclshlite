@@ -57,6 +57,8 @@ int main() {
 	    */
 	  if (inp.substr(0,4)=="proc") {
 		proc(inp.substr(5,inp.length()),proc_list);
+	  } else {
+		cout<<parse_cmd(inp,vars)<<endl;
 	  }
 
 	  	DBG("You have entered :"<<inp<<endl);
@@ -64,7 +66,7 @@ int main() {
 		We call this nice routine who should 
 		handle all the job of cmds parsing.
 		*/
-	  	cout<<parse_cmd(inp,vars)<<endl;
+	  	
 	}	 
 }
 

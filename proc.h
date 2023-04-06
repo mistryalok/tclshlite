@@ -31,23 +31,38 @@ void proc(string inp,proc_type& proc_list) {
           map<string,string> proc_vars; 
           vector<string> proc_code;
           string proc_name;
-
+          vector<string> split_str;
             /*
               Extract func name <proc proc_name >
               Store function name on second word 
               
              proc_name = substr(x,y);
             */
-
+                removeDupWord(inp,split_str,0);
+                cout<<"Func name is "<<split_str[0]<<endl;
+                proc_name = split_str[0];
 
             /*
              Traverse through each variable and store in map<string,string>
              Map null value, since we don't have any idea during initial phase of values
-
-
                 for(each spaced variable) starting from "{" till "}"
                 proc_var[variable] = "NULL"
             */
+                int var_idx=0;
+                string var_p;
+                for(auto i = split_str.begin();i!=split_str.end();++i) {
+                        // if it's other than name ( from second args ), then only store it.
+                        if(var_idx>0) {
+                                var_p=remove_a_char(*i,'}');
+                                var_p=remove_a_char(var_p,'{');
+                                if(!var_p.empty()) {
+                                //DBG(<<var_p<<endl);
+                                //For now keep zero.
+                                proc_vars[var_p]="0";
+                                }
+                        }
+                        var_idx++;
+                }
 
             /*
              store the code in vector until you see "}"
@@ -61,16 +76,24 @@ void proc(string inp,proc_type& proc_list) {
                 proc_code.push_back(new_string)
                 }
             */
-
+            string next_cmd;
+            do {
+                cout<<"%";
+	  	getline(cin,next_cmd);
+                proc_code.push_back(next_cmd);
+            }while(next_cmd!="}");
+            cout<<"Exiting from proc"<<endl;
             /*
              assign this structure to proc_list.
             */
            proc_body[proc_vars]=proc_code;
-           proc_list[inp.substr(0,4)]=proc_body;
+           proc_list[proc_name]=proc_body;
 
 /*
  For debug mostly
 */
+//#define CODE_PRINT
+#ifdef CODE_PRINT
           map<string,map<map<string,string>,vector<string> > >::iterator it = proc_list.begin();
           map<map<string,string>,vector<string> >::iterator it_body;// = proc_body.begin();
           map<string,string>::iterator it_vars;
@@ -102,7 +125,7 @@ void proc(string inp,proc_type& proc_list) {
                         ++it;
                 }
 
-
+#endif //CODE_PRINT
 
 }
 
