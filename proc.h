@@ -77,11 +77,19 @@ void proc(string inp,proc_type& proc_list) {
                 }
             */
             string next_cmd;
-            do {
+            // you are here when user enters something
+            // like this.
+            // proc blah_blah {blah1 blah2 blah3} {
+            cout<<"%";
+	    getline(cin,next_cmd);
+            while(next_cmd!="}") {
+                // Push next command in vector
+                proc_code.push_back(next_cmd);
+                // then wait again for next cmds if there are
+                // any.
                 cout<<"%";
 	  	getline(cin,next_cmd);
-                proc_code.push_back(next_cmd);
-            }while(next_cmd!="}");
+            }
             cout<<"Exiting from proc"<<endl;
             /*
              assign this structure to proc_list.

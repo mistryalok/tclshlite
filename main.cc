@@ -37,6 +37,9 @@ int main() {
 	  map<string,string> vars;
 	  proc_type proc_list;
 	  string inp;
+	  vector<string> split_cmd;
+	  bool custom_prc=false;
+
 	  cout<<"########################################"<<endl;
 	  cout<<"# Welcome to tclshlite..               #"<<endl;
 	  cout<<"# 										#"<<endl;
@@ -46,9 +49,11 @@ int main() {
 	/*
 	so we keep on looping until user says no more please.
 	*/ 
+
 	while(1) {
 	  	cout<<"%";
 	  	getline(cin,inp);
+		removeDupWord(inp,split_cmd,0);
 		if(inp.substr(0,4)=="exit") { break; }
 		if(inp.substr(0,4)=="help") { help(); }
 
@@ -56,9 +61,18 @@ int main() {
 	   if user wants to process a proc/function
 	    */
 	  if (inp.substr(0,4)=="proc") {
+		cout<<"Init proc"<<endl;
 		proc(inp.substr(5,inp.length()),proc_list);
 	  } else {
-		cout<<parse_cmd(inp,vars)<<endl;
+		
+		/*
+		 if it wasn't custom prc then
+		 execute normal commands..
+		*/
+		if(!proc_execute(split_cmd[1],proc_list)) {
+			cout<<parse_cmd(inp,vars)<<endl;
+		}
+		custom_prc=false;
 	  }
 
 	  	DBG("You have entered :"<<inp<<endl);

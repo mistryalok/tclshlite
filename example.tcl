@@ -4,3 +4,7 @@ puts $first_var
 puts $second_var
 set first_var ${second_var}
 puts $first_var
+proc abcd {a c d} {
+    set a 4
+    puts $a
+}
