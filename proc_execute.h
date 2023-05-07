@@ -3,6 +3,11 @@
 #include "common_includes.h"
 
 bool proc_execute(string cmd,proc_type& proc_list) {
+    /* 
+    Splitting cmd to get arguments to be passed
+    */
+    vector<string> split_cmd;
+    removeDupWord(cmd,split_cmd,0);
     /*
     look if cmd string has match with any of the stored
     proc in proc_list.. 
@@ -38,9 +43,7 @@ bool proc_execute(string cmd,proc_type& proc_list) {
 				own kind of stack/varialbe
 				space
 				*/
-			if(cmd==p_list_it->first) {
-          
-				
+			if(split_cmd[0]==p_list_it->first) {
 				cout<<"Custom proc is called as : "<<p_list_it->first<<endl;
                 p_space = p_list_it->second;
                 p_space_it = p_space.begin();
@@ -48,9 +51,12 @@ bool proc_execute(string cmd,proc_type& proc_list) {
                 p_code = p_space_it->second;
                 p_vars_it = p_vars.begin();
                 p_code_it = p_code.begin();
+                int arg_idx=1;
                 while(p_vars_it!=p_vars.end()) {
                   cout<<"Printing variable "<<p_vars_it->first<<" has "<<p_vars_it->second<<endl;
+                  p_vars_it->second = split_cmd[arg_idx];
                   ++p_vars_it;
+                  arg_idx++;
                 }//p_space=proc_list[cmd];
                 while(p_code_it!=p_code.end()) {
                   cout<<"Printing code "<<*p_code_it<<endl;

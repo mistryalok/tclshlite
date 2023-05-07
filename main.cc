@@ -69,7 +69,7 @@ int main() {
 		 if it wasn't custom prc then
 		 execute normal commands..
 		*/
-		if(!proc_execute(split_cmd[1],proc_list)) {
+		if(!proc_execute(inp,proc_list)) {
 			cout<<parse_cmd(inp,vars)<<endl;
 		}
 		custom_prc=false;
