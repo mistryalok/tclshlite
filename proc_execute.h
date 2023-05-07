@@ -54,6 +54,7 @@ bool proc_execute(string cmd,proc_type& proc_list) {
                 }//p_space=proc_list[cmd];
                 while(p_code_it!=p_code.end()) {
                   cout<<"Printing code "<<*p_code_it<<endl;
+                  cout<<parse_cmd(*p_code_it,p_vars)<<endl;
                   p_code_it++;
                 }
                 //p_code_it = p_space;
