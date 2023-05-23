@@ -35,7 +35,7 @@ string parse_cmd(const string& inp,map<string,string>& vars) {
         if user wants to parse a tcl file then no worries.
     */
 	  if (inp.substr(0,7)=="source ") {
-			cout<<"Invoking file read"<<endl;
+			DBG(<<"Invoking file read"<<endl);
 			fstream src_file;
 			src_file.open(inp.substr(7,inp.length()-7), ios::in); 
 			if(src_file.is_open()) {

@@ -61,7 +61,7 @@ int main() {
 	   if user wants to process a proc/function
 	    */
 	  if (inp.substr(0,4)=="proc") {
-		cout<<"Init proc"<<endl;
+		DBG(<<"Init proc"<<endl);
 		proc(inp.substr(5,inp.length()),proc_list);
 	  } else {
 		

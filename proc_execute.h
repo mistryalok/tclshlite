@@ -34,17 +34,17 @@ bool proc_execute(string cmd,proc_type& proc_list) {
 		 Check if it falls in one of the proc
 		 user has added
 		 */
-    cout<<"Searching for proc"<<endl;
+    //DBG(<<"Searching for proc"<<endl;
 		while(p_list_it!=proc_list.end()) {
-            cout<<"Finding this proc "<<cmd<<endl;
-            cout<<"First is :"<<p_list_it->first<<endl;
+            //DBG(<<"Finding this proc "<<cmd<<endl;
+            //DBG(<<"First is :"<<p_list_it->first<<endl;
             /* 
 				Call proc and setup its
 				own kind of stack/varialbe
 				space
 				*/
 			if(split_cmd[0]==p_list_it->first) {
-				cout<<"Custom proc is called as : "<<p_list_it->first<<endl;
+				//DBG(<<"Custom proc is called as : "<<p_list_it->first<<endl;
                 p_space = p_list_it->second;
                 p_space_it = p_space.begin();
                 p_vars = p_space_it->first;
@@ -53,13 +53,13 @@ bool proc_execute(string cmd,proc_type& proc_list) {
                 p_code_it = p_code.begin();
                 int arg_idx=1;
                 while(p_vars_it!=p_vars.end()) {
-                  cout<<"Printing variable "<<p_vars_it->first<<" has "<<p_vars_it->second<<endl;
+                  DBG(<<"Printing variable "<<p_vars_it->first<<" has "<<p_vars_it->second<<endl);
                   p_vars_it->second = split_cmd[arg_idx];
                   ++p_vars_it;
                   arg_idx++;
                 }//p_space=proc_list[cmd];
                 while(p_code_it!=p_code.end()) {
-                  cout<<"Printing code "<<*p_code_it<<endl;
+                  DBG(<<"Printing code "<<*p_code_it<<endl);
                   cout<<parse_cmd(*p_code_it,p_vars)<<endl;
                   p_code_it++;
                 }

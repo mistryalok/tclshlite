@@ -39,7 +39,7 @@ void proc(string inp,proc_type& proc_list) {
              proc_name = substr(x,y);
             */
                 removeDupWord(inp,split_str,0);
-                cout<<"Func name is "<<split_str[0]<<endl;
+                DBG(<<"Func name is "<<split_str[0]<<endl);
                 proc_name = split_str[0];
 
             /*
@@ -90,7 +90,7 @@ void proc(string inp,proc_type& proc_list) {
                 cout<<"%";
 	  	getline(cin,next_cmd);
             }
-            cout<<"Exiting from proc"<<endl;
+            DBG(<<"Exiting from proc"<<endl);
             /*
              assign this structure to proc_list.
             */
